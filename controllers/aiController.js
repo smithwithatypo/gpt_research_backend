@@ -9,5 +9,11 @@ const AIController = {
   }
 };
 
-// module.exports = AIController;
-export default AIController;
+const AITest = {        // test function
+  async processText(req, res) {
+    console.log("controller: ", req.body);
+    res.json(req.body);
+  }
+};
+
+export { AITest, AIController };
