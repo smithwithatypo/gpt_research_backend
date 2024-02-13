@@ -11,8 +11,11 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// routes
 app.use('/api/ai', aiRoutes);
 
+// listen to port
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)
   })
