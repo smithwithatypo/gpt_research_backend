@@ -10,7 +10,7 @@ const model_options = {
     "4": "gpt-4-0125-preview",
 };
 
-// change model
+// change model here
 const model_choice = model_options["3"];
 
 

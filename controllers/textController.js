@@ -9,11 +9,5 @@ const TextController = {
   }
 };
 
-// const AITest = {
-//   async processText(req, res) {
-//     console.log("controller: ", req.body);
-//     res.json(req.body);
-//   }
-// };
 
 export { TextController };
