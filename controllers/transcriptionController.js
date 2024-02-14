@@ -1,10 +1,10 @@
-import { AudioTranscriptionService } from '../services/audioService.js';
+import { AudioTranscriptionService } from '../services/transcriptionService.js';
 
-const AudioController = {
+const TranscriptionController = {
     async getResponse(req, res) {
         // console.log("controller: ", req.body);
-        const response = await AudioTranscriptionService.transcribeAudio(req.body);
-        console.log("controller: ", response);  // for debugging
+        const response = await AudioTranscriptionService.transcribeAudio("./uploads/audio.webm");
+        // console.log("controller: ", response);  // for debugging
         // await console.log("controller: ", req.body);  // for debugging
         res.json(response);
     }
@@ -12,4 +12,4 @@ const AudioController = {
 
 
 
-export { AudioController };
+export { TranscriptionController };
