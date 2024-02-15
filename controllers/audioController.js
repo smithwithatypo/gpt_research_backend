@@ -1,11 +1,8 @@
 const AudioController = {
     async uploadAudio(req, res) {
-        console.log("Uploaded File: ", req.file); // Information about the saved file
-        
-        // You can perform additional server-side processing here
+        console.log("Uploaded File: ", req.file.size); 
         res.json({ message: "Upload complete", fileInfo: req.file.size });
     }
-    
 };
 
 
