@@ -10,12 +10,13 @@ const model_choice = model_options["3"];
 
 
 const TextGeneratingService = {
-    async generateText(prompt) {
+    async generateText(codePrompt, transcriptPrompt, transcriptData, studentCodeData) {
         try {
             const completion = await openai.chat.completions.create({
                 messages: [
                     {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": `print this twice: ${prompt}`},
+                    {"role": "user",   "content": `${codePrompt} : ${studentCodeData}`},
+                    {"role": "user",   "content": `${transcriptPrompt} : ${transcriptData}`},
                 ],
                 model: model_choice,
               });

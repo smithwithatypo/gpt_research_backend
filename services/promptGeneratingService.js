@@ -1,8 +1,11 @@
 const PromptGeneratingService = {
-    generatePrompt() {
-        // Placeholder logic for prompt generation
-        // This should be replaced with actual logic to generate a prompt
-        const prompt = "hello world";
+    generateCodePrompt() {
+        const prompt = "say this is the code prompt and repeat the following sentence";
+        return prompt;
+    },
+
+    generateTranscriptPrompt() {
+        const prompt = "say this is the transcript prompt and repeat the following sentence";
         return prompt;
     }
 };
