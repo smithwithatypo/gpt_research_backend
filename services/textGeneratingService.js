@@ -15,8 +15,8 @@ const TextGeneratingService = {
             const completion = await openai.chat.completions.create({
                 messages: [
                     {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user",   "content": `${codePrompt} : ${studentCodeData}`},
                     {"role": "user",   "content": `${transcriptPrompt} : ${transcriptData}`},
+                    {"role": "user",   "content": `${codePrompt} : ${studentCodeData}`},
                 ],
                 model: model_choice,
               });
