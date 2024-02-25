@@ -1,7 +1,14 @@
 import OpenAI from 'openai';
 const openai = new OpenAI();
-openai.apiKey = process.env.OPENAI_API_KEY;
 
+const API_KEY: string | undefined = process.env.OPENAI_API_KEY;
+if (API_KEY !== undefined) {     // needed for typescript
+    openai.apiKey = API_KEY; 
+  } else {
+    openai.apiKey = 'default string';
+  }
+
+  
 const model_options = {
     "3": "gpt-3.5-turbo",
     "4": "gpt-4-0125-preview",
@@ -10,7 +17,7 @@ const model_choice = model_options["3"];
 
 
 const TextGeneratingService = {
-    async generateText(codePrompt, transcriptPrompt, transcriptData, studentCodeData) {
+    async generateText(codePrompt: string, transcriptPrompt: string, transcriptData: string, studentCodeData: string) {
         try {
             const completion = await openai.chat.completions.create({
                 messages: [

@@ -1,7 +1,7 @@
 import { JSONStorageService } from '../services/JSONStorageService.js';
 
 const JSONDataController = {
-  async saveJSON(req, res) {
+  async saveJSON(req: any, res: any) {
     try {
       const message = await JSONStorageService.saveJSONToFile(req.body);
       res.json({ success: true, message });

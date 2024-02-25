@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const TextGeneratingController = {
-    async getGeneratedText(req, res) {
+    async getGeneratedText(req: any, res: any) {
         try {
             // read JSON file from ../savedJSONData/data.json
             const jsonFilePath = path.join(__dirname, '..', 'savedJSONData', 'data.json');

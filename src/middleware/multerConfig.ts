@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const fileFilter = (req, file, cb) => {
+const fileFilter = (req: any, file: any, cb: any) => {
     if (file.mimetype === 'audio/webm' || file.mimetype === 'video/webm') {
         cb(null, true);
     } else {

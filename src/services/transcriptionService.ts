@@ -1,10 +1,17 @@
 import fs from 'fs';
 import OpenAI from "openai";
 
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+const openai = new OpenAI();
+
+const API_KEY: string | undefined = process.env.OPENAI_API_KEY;
+if (API_KEY !== undefined) {     // needed for typescript
+    openai.apiKey = API_KEY; 
+  } else {
+    openai.apiKey = 'default string';
+  }
 
 // Utility function to save text to a file
-function saveTranscriptionToFile(text, filePath) {
+function saveTranscriptionToFile(text: string, filePath: any) {
   return new Promise((resolve, reject) => {
     fs.writeFile(filePath, text, (err) => {
       if (err) {
@@ -19,7 +26,7 @@ function saveTranscriptionToFile(text, filePath) {
 }
 
 const AudioTranscriptionService = {
-  async transcribeAudio(audioFilePath) { 
+  async transcribeAudio(audioFilePath: any) { 
     try {
       const transcription = await openai.audio.transcriptions.create({
         file: fs.createReadStream(audioFilePath),

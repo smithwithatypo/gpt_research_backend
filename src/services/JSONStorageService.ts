@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 class JSONStorageService {
-  static saveJSONToFile(jsonData, filename = 'data.json') {
+  static saveJSONToFile(jsonData: any, filename = 'data.json') {
     return new Promise((resolve, reject) => {
       const dirPath = path.join(__dirname, '..', 'savedJSONData');
       if (!fs.existsSync(dirPath)){
