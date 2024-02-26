@@ -20,13 +20,13 @@ const TextGeneratingController = {
     getGeneratedText(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // read JSON file from ../savedJSONData/data.json
-                const jsonFilePath = path.join(__dirname, '..', 'savedJSONData', 'data.json');
+                // read JSON file
+                const jsonFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'json', 'data.json');
                 const fileContents = yield fs.readFile(jsonFilePath, 'utf8');
                 const jsonData = JSON.parse(fileContents);
                 const studentCodeData = jsonData.text;
-                // get transcript data from ../transcriptions/transcript.txt
-                const transcriptFilePath = path.join(__dirname, '..', 'transcriptions', 'transcription.txt');
+                // get transcript data
+                const transcriptFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'text', 'transcription.txt');
                 const transcriptContents = yield fs.readFile(transcriptFilePath, 'utf8');
                 const transcriptData = transcriptContents;
                 const codePrompt = PromptGeneratingService.generateCodePrompt();

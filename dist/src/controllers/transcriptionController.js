@@ -8,10 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { AudioTranscriptionService } from '../services/transcriptionService.js';
+const FILEPATH = "./temp/audio/audio.webm";
 const TranscriptionController = {
     getResponse(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield AudioTranscriptionService.transcribeAudio("./uploads/audio.webm");
+            const response = yield AudioTranscriptionService.transcribeAudio(FILEPATH);
             res.json(response);
         });
     }

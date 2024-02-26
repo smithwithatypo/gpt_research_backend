@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import fs from 'fs';
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+dotenv.config();
 const openai = new OpenAI();
 const API_KEY = process.env.OPENAI_API_KEY;
 if (API_KEY !== undefined) { // needed for typescript
@@ -41,7 +43,7 @@ const AudioTranscriptionService = {
                     model: "whisper-1",
                     response_format: "verbose_json",
                 });
-                const savedFilePath = './transcriptions/transcription.txt';
+                const savedFilePath = './temp/text/transcription.txt';
                 yield saveTranscriptionToFile(transcription.text, savedFilePath);
                 // console.log(transcription.text);    // for debugging
                 return transcription.text;

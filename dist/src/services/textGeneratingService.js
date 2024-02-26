@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import OpenAI from 'openai';
 const openai = new OpenAI();
+import dotenv from 'dotenv';
+dotenv.config();
 const API_KEY = process.env.OPENAI_API_KEY;
 if (API_KEY !== undefined) { // needed for typescript
     openai.apiKey = API_KEY;
@@ -28,8 +30,8 @@ const TextGeneratingService = {
                 const completion = yield openai.chat.completions.create({
                     messages: [
                         { "role": "system", "content": "You are a helpful assistant." },
-                        { "role": "user", "content": `${transcriptPrompt} : ${transcriptData}` },
                         { "role": "user", "content": `${codePrompt} : ${studentCodeData}` },
+                        { "role": "user", "content": `${transcriptPrompt} : ${transcriptData}` },
                     ],
                     model: model_choice,
                 });

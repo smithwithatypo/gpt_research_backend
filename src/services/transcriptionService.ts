@@ -1,5 +1,7 @@
 import fs from 'fs';
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const openai = new OpenAI();
 
@@ -34,7 +36,7 @@ const AudioTranscriptionService = {
         response_format: "verbose_json",
       });
     
-      const savedFilePath = './transcriptions/transcription.txt';
+      const savedFilePath = './temp/text/transcription.txt';        
       await saveTranscriptionToFile(transcription.text, savedFilePath);
 
       // console.log(transcription.text);    // for debugging
