@@ -1,4 +1,7 @@
 node_modules/
-dbconfig.js
 .env
 dist/
+.DS_Store
+temp/audio/
+temp/text/
+temp/json/
