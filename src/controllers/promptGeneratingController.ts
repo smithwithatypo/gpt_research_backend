@@ -2,7 +2,7 @@
 import { PromptGeneratingService } from '../services/promptGeneratingService.js';
 
 const PromptGeneratingController = {
-    getTextPrompt(req: any, res: any) {
+    getCodePrompt(req: any, res: any) {
         try {
             const prompt = PromptGeneratingService.generateCodePrompt();
             res.json({ success: true, data: prompt });

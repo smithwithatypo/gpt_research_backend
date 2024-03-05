@@ -1,33 +1,31 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// services
+import { ReadFileService } from '../services/readFileService.js'; 
 import { TextGeneratingService } from '../services/textGeneratingService.js';
 import { PromptGeneratingService } from '../services/promptGeneratingService.js';
+import { ReadProblemService } from '../services/readProblemService.js';
+// models
+import { Problem } from '../models/problem.js';
 
-// Helper to get __dirname in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const TextGeneratingController = {
     async getGeneratedText(req: any, res: any) {
         try {
-            // read JSON file
-            const jsonFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'json', 'data.json');   
-            const fileContents = await fs.readFile(jsonFilePath, 'utf8');
-            const jsonData = JSON.parse(fileContents);
-            const studentCodeData = jsonData.text;
+            const problemData: Problem | undefined = await ReadProblemService.readProblemData();  // req.choice: string
+            if (!problemData) {
+                throw new Error('Failed to read problem data.');
+            }
 
-            // get transcript data
-            const transcriptFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'text', 'transcription.txt');   
-            const transcriptContents = await fs.readFile(transcriptFilePath, 'utf8');
-            const transcriptData = transcriptContents;
-            
+            const studentCodeData = await ReadFileService.readCodeData();
+            const transcriptData = await ReadFileService.readTranscriptData();
+
             const codePrompt = PromptGeneratingService.generateCodePrompt();
             const transcriptPrompt = PromptGeneratingService.generateTranscriptPrompt();
-            const response = await TextGeneratingService.generateText(codePrompt, transcriptPrompt, transcriptData, studentCodeData);
+
+            const response = await TextGeneratingService.generateText(problemData, codePrompt, transcriptPrompt, transcriptData, studentCodeData);
 
             res.json({ success: true, data: response });
+
+
         } catch (error) {
             console.error('Error in TextGeneratingController:', error);
             res.status(500).json({ success: false, error: "Failed to generate text." });
@@ -36,30 +34,3 @@ const TextGeneratingController = {
 };
 
 export { TextGeneratingController };
-
-
-
-
-
-
-
-
-
-
-// import { TextGeneratingService } from '../services/textGeneratingService.js';
-// import { PromptGeneratingService } from '../services/promptGeneratingService.js';
-
-// const TextGeneratingController = {
-//     async getGeneratedText(req, res) {
-//         try {
-//             const prompt = PromptGeneratingService.generatePrompt();
-//             const response = await TextGeneratingService.generateText(prompt, user_input);
-//             res.json({ success: true, data: response });
-//         } catch (error) {
-//             console.error('Error in TextGeneratingController:', error);
-//             res.status(500).json({ success: false, error: "Failed to generate text." });
-//         }
-//     }
-// };
-
-// export { TextGeneratingController };

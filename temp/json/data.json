@@ -1,3 +1,3 @@
 {
-  "text": "testing this"
+  "text": "class Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        hashset = set()\n        for number in nums:\n            if number in hashset:\n                return True\n            hashset.add(number)\n        return False"
 }

@@ -7,31 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// services
+import { ReadFileService } from '../services/readFileService.js';
 import { TextGeneratingService } from '../services/textGeneratingService.js';
 import { PromptGeneratingService } from '../services/promptGeneratingService.js';
-// Helper to get __dirname in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { ReadProblemService } from '../services/readProblemService.js';
 const TextGeneratingController = {
     getGeneratedText(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // read JSON file
-                const jsonFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'json', 'data.json');
-                const fileContents = yield fs.readFile(jsonFilePath, 'utf8');
-                const jsonData = JSON.parse(fileContents);
-                const studentCodeData = jsonData.text;
-                // get transcript data
-                const transcriptFilePath = path.join(__dirname, '..', '..', '..', 'temp', 'text', 'transcription.txt');
-                const transcriptContents = yield fs.readFile(transcriptFilePath, 'utf8');
-                const transcriptData = transcriptContents;
+                const problemData = yield ReadProblemService.readProblemData(); // req.choice: string
+                if (!problemData) {
+                    throw new Error('Failed to read problem data.');
+                }
+                const studentCodeData = yield ReadFileService.readCodeData();
+                const transcriptData = yield ReadFileService.readTranscriptData();
                 const codePrompt = PromptGeneratingService.generateCodePrompt();
                 const transcriptPrompt = PromptGeneratingService.generateTranscriptPrompt();
-                const response = yield TextGeneratingService.generateText(codePrompt, transcriptPrompt, transcriptData, studentCodeData);
+                const response = yield TextGeneratingService.generateText(problemData, codePrompt, transcriptPrompt, transcriptData, studentCodeData);
                 res.json({ success: true, data: response });
             }
             catch (error) {
@@ -42,18 +35,3 @@ const TextGeneratingController = {
     }
 };
 export { TextGeneratingController };
-// import { TextGeneratingService } from '../services/textGeneratingService.js';
-// import { PromptGeneratingService } from '../services/promptGeneratingService.js';
-// const TextGeneratingController = {
-//     async getGeneratedText(req, res) {
-//         try {
-//             const prompt = PromptGeneratingService.generatePrompt();
-//             const response = await TextGeneratingService.generateText(prompt, user_input);
-//             res.json({ success: true, data: response });
-//         } catch (error) {
-//             console.error('Error in TextGeneratingController:', error);
-//             res.status(500).json({ success: false, error: "Failed to generate text." });
-//         }
-//     }
-// };
-// export { TextGeneratingController };

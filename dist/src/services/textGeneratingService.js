@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// openAI API config
 import OpenAI from 'openai';
 const openai = new OpenAI();
 import dotenv from 'dotenv';
@@ -24,17 +25,20 @@ const model_options = {
 };
 const model_choice = model_options["3"];
 const TextGeneratingService = {
-    generateText(codePrompt, transcriptPrompt, transcriptData, studentCodeData) {
+    generateText(problemData, codePrompt, transcriptPrompt, transcriptData, studentCodeData) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                // console.log(problemData);
                 const completion = yield openai.chat.completions.create({
                     messages: [
-                        { "role": "system", "content": "You are a helpful assistant." },
+                        { "role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph.` },
+                        { "role": "user", "content": `this is the technical interview question : ${problemData.problem}, here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}` },
                         { "role": "user", "content": `${codePrompt} : ${studentCodeData}` },
                         { "role": "user", "content": `${transcriptPrompt} : ${transcriptData}` },
                     ],
                     model: model_choice,
                 });
+                //   console.log(completion.choices[0].message.content);
                 return completion.choices[0].message.content;
             }
             catch (error) {
