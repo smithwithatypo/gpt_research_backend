@@ -1,3 +1,7 @@
+// models
+import { Problem } from '../models/problem';
+
+
 // openAI API config
 import OpenAI from 'openai';
 const openai = new OpenAI();
@@ -11,10 +15,8 @@ if (API_KEY !== undefined) {     // needed for typescript
     openai.apiKey = 'default string';
 }
 
-// import Problem data model
-import { Problem } from '../models/problem';
 
-
+// choose openAI GPT model
 const model_options = {
     "3": "gpt-3.5-turbo",
     "4": "gpt-4-0125-preview",
@@ -22,6 +24,7 @@ const model_options = {
 const model_choice = model_options["3"];
 
 
+// service
 const TextGeneratingService = {
     async generateText(problemData: Problem, codePrompt: string, transcriptPrompt: string, transcriptData: string, studentCodeData: string) {
         try {
