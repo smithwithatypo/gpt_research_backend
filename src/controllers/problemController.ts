@@ -23,6 +23,7 @@ const ProblemController = {
             const full_problem: Problem = await ReadProblemService.getOneProblem( Number(req.params.id) );
             const response: ProblemStudentView = new ProblemStudentView(
                 full_problem.problemID, 
+                full_problem.summary,
                 full_problem.problem,
                 full_problem.example1,
                 full_problem.example2,
