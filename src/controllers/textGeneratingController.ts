@@ -10,7 +10,7 @@ import { Problem } from '../models/problem.js';
 const TextGeneratingController = {
     async getGeneratedText(req: any, res: any) {
         try {
-            const problemData: Problem | undefined = await ReadProblemService.readProblemData();  // req.choice: string
+            const problemData: Problem | undefined = await ReadProblemService.placeholder();  // TODO: CHANGE TO POST with getOneProblem() and JSON.   req.choice: string
             if (!problemData) {
                 throw new Error('Failed to read problem data.');
             }

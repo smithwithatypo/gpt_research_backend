@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import aiRoutes from './routes/aiRoutes.js';
 import audioRoutes from './routes/audioRoutes.js';
 import textRoutes from './routes/textRoutes.js';
+import problemRoutes from './routes/problemRoutes.js';
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/ai', aiRoutes);
 app.use('/api/audio', audioRoutes);
 app.use('/api/text', textRoutes);
+app.use('/api/problems', problemRoutes);
 
 // listen to port
 app.listen(port, () => {
