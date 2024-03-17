@@ -4,16 +4,18 @@ import  problems  from '../data/problemDatabase.js';
 
 class ReadProblemService {
     
-    static async getProblemSummaries(): Promise<Array<{ problemID: string, summary: string }>> {
-        const summaries = problems.map((problem: any) => {
-            return { problemID: problem.problemID, summary: problem.summary };
+    static async getProblemSummaries(): Promise<Array<{ problemID: number, summary: string }>> {
+        const summaries: Array<{ problemID: number, summary: string }> = [];
+        problems.forEach((problem: Problem, problemID: number) => {
+            summaries.push({ problemID, summary: problem.summary });
         });
         return summaries;
     }
 
     static async getOneProblem(problemID: number): Promise<Problem | any> {
         try {
-            return problems[problemID];
+            // console.log( problems.get(problemID));
+            return problems.get(problemID);
         } catch (error) {
             console.error('Error reading problem:', error);
         }
@@ -22,8 +24,7 @@ class ReadProblemService {
 
     static async placeholder(): Promise<Problem | any> {
         try {
-            // console.log(problems[0]);
-            return problems[0];
+            return problems.get(0);
         } catch (error) {
             console.error('Error reading problem:', error);
         }

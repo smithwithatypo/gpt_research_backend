@@ -20,7 +20,7 @@ const ProblemController = {
 
     async getProblemData(req: any, res: any) {
         try {
-            const full_problem: Problem = await ReadProblemService.getOneProblem(req.params.id);
+            const full_problem: Problem = await ReadProblemService.getOneProblem( Number(req.params.id) );
             const response: ProblemStudentView = new ProblemStudentView(
                 full_problem.problemID, 
                 full_problem.problem,
