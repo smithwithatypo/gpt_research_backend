@@ -8,6 +8,6 @@ const router = express.Router();
 //routes
 router.get('/transcribe-audio', TranscriptionController.getResponse); 
 router.get('/generate-text', TextGeneratingController.getGeneratedText)  // change to POST?
-
+router.post('/generate-text', TextGeneratingController.getGeneratedTextPost)
 
 export default router;

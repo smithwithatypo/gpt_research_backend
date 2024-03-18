@@ -31,7 +31,7 @@ const TextGeneratingService = {
             // console.log(problemData);
             const completion = await openai.chat.completions.create({
                 messages: [
-                    {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph.`},
+                    {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph. Do not give solutions. If they are wrong, just reply in one sentence with guidance.`},
                     {"role": "user",   "content": `this is the technical interview question : ${problemData.problem}, here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}`},
                     {"role": "user",   "content": `${codePrompt} : ${studentCodeData}`},
                     {"role": "user",   "content": `${transcriptPrompt} : ${transcriptData}`},
