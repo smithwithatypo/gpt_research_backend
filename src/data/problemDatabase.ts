@@ -29,6 +29,15 @@ problems.set(2,{
     example2: 'Input: nums = [3,2,4], target = 6 Output: [1,2]',
     example3: 'Input: nums = [3,3], target = 6 Output: [0,1]'
 });
+problems.set(3,{
+    problemID: 3,
+    summary: "Valid Palindrome",
+    problem: 'A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers. Given a string s, return true if it is a palindrome, or false otherwise.',
+    categories: ['Array', 'Two Pointers'],
+    example1: 'Input: s = "A man, a plan, a canal: Panama"    Output: true',
+    example2: 'Input: s = "race a car"   Output: false',
+    example3: 'Input: s = " "    Output: true'
+});
 
 
 export default problems;
