@@ -35,19 +35,18 @@ const TextGeneratingController = {
     async getGeneratedTextPost(req: any, res: any) {
         try {
 
-            const { studentCodeData, problemChoice } = req.body;
+            const { studentCodeData, problemChoice, transcribedAudio } = req.body;
             const problemData: Problem | undefined = await ReadProblemService.getOneProblem(problemChoice);
             if (!problemData) {
                 throw new Error('Failed to read problem data.');
             }
 
-            // const studentCodeData = await ReadFileService.readCodeData();
-            const transcriptData = await ReadFileService.readTranscriptData();
+            // const studentCodeData = await ReadFileService.readCodeData();  // delete
+            // const transcriptData = await ReadFileService.readTranscriptData();  // delete
 
             const codePrompt = PromptGeneratingService.generateCodePrompt();
             const transcriptPrompt = PromptGeneratingService.generateTranscriptPrompt();
-
-            const response = await TextGeneratingService.generateText(problemData, codePrompt, transcriptPrompt, transcriptData, studentCodeData);
+            const response = await TextGeneratingService.generateText(problemData, codePrompt, transcriptPrompt, transcribedAudio, studentCodeData);
 
             res.json({ success: true, data: response });
 

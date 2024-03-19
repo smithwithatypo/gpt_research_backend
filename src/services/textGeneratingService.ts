@@ -1,7 +1,6 @@
 // models
 import { Problem } from '../models/problem';
 
-
 // openAI API config
 import OpenAI from 'openai';
 const openai = new OpenAI();
@@ -9,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const API_KEY: string | undefined = process.env.OPENAI_API_KEY;
-if (API_KEY !== undefined) {     // needed for typescript
+if (API_KEY !== undefined) {
     openai.apiKey = API_KEY; 
   } else {
     openai.apiKey = 'default string';
@@ -22,24 +21,22 @@ const model_options = {
     "4": "gpt-4-0125-preview",
 };
 const model_choice = model_options["3"];
+const temperature = 0.5;    // range 0 to 2, higher being more random
 
 
-// service
 const TextGeneratingService = {
     async generateText(problemData: Problem, codePrompt: string, transcriptPrompt: string, transcriptData: string, studentCodeData: string) {
         try {
-            // console.log(problemData);
             const completion = await openai.chat.completions.create({
+                temperature: temperature,
                 messages: [
-                    {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph. Do not give solutions. If they are wrong, just reply in one sentence with guidance.`},
-                    {"role": "user",   "content": `this is the technical interview question : ${problemData.problem}, here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}`},
-                    {"role": "user",   "content": `${codePrompt}: /n /n  ${studentCodeData}`},
-                    // {"role": "user",   "content": `${transcriptPrompt}: /n /n ${transcriptData}`},
+                    {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph. Do not give solutions. If they are wrong, only reply with one paragraph of guidance.`},
+                    {"role": "user",   "content": `this is the technical interview question: ${problemData.problem}. /n /n Here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}`},
+                    {"role": "user",   "content": `${codePrompt}:  ${studentCodeData}`},
+                    {"role": "user",   "content": `${transcriptPrompt}:  ${transcriptData}`},
                 ],
                 model: model_choice,
               });
-            
-            //   console.log(completion.choices[0].message.content);
               return completion.choices[0].message.content;
         } catch (error) {
             console.error('Error generating text:', error);
