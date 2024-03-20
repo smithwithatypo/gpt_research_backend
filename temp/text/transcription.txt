@@ -1,1 +1,0 @@
-Okay, so first I iterate through the array, and if the number is in the hash set, I return true. If not, I add that number to the hash set, and then I return false.
