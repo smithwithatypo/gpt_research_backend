@@ -14,18 +14,7 @@ class ReadProblemService {
 
     static async getOneProblem(problemID: number): Promise<Problem | any> {
         try {
-            // console.log( problems.get(problemID));
             return problems.get(problemID);
-        } catch (error) {
-            console.error('Error reading problem:', error);
-        }
-        return undefined;
-    }
-
-    // DELETE?
-    static async placeholder(): Promise<Problem | any> {
-        try {
-            return problems.get(0);
         } catch (error) {
             console.error('Error reading problem:', error);
         }

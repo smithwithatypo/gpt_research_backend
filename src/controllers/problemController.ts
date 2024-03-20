@@ -10,8 +10,6 @@ const ProblemController = {
         try {
             const response: any = await ReadProblemService.getProblemSummaries();
             res.json({ success: true, data: response });
-
-
         } catch (error) {
             console.error('Error in ProblemController:', error);
             res.status(500).json({ success: false, error: "Failed to get problems." });
@@ -29,7 +27,6 @@ const ProblemController = {
                 full_problem.example2,
                 full_problem.example3
                 );
-            
             res.json({ success: true, data: response });
         } catch (error) {
             console.error('Error in ProblemController:', error);

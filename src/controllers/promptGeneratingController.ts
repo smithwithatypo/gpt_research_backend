@@ -1,4 +1,3 @@
-
 import { PromptGeneratingService } from '../services/promptGeneratingService.js';
 
 const PromptGeneratingController = {
