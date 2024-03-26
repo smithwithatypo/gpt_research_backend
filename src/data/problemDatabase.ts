@@ -38,6 +38,15 @@ problems.set(3,{
     example2: 'Input: s = "race a car"   Output: false',
     example3: 'Input: s = " "    Output: true'
 });
+problems.set(4,{
+    problemID: 4,
+    summary: "Valid parentheses",
+    categories: ["Stack", "String"],
+    problem:  "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.  /n input string is valid if: /n Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order. Every close bracket has a corresponding open bracket of the same type.",
+    example1: "Input: s = '()' Output: true",
+    example2: "Input: s = '()[]{}' Output: true",
+    example3: "Input: s = '(]' Output: false",
+});
 
 
 export default problems;
