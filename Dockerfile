@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Ensure there's a temp/audio directory
+RUN mkdir ./temp/audio
+
 # Expose port 3000
 EXPOSE 3000
 
