@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Ensure there's a temp/audio directory
-RUN mkdir ./temp/audio
+RUN mkdir -p ./temp/audio
 
 # Expose port 3000
 EXPOSE 3000
