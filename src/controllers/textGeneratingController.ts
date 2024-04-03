@@ -13,10 +13,10 @@ const TextGeneratingController = {
             const problemData: Problem | undefined = await ReadProblemService.getOneProblem(problemChoice);
             if (!problemData) { throw new Error('Failed to read problem data.') }
 
-            const systemPrompt = PromptGeneratingService.generateSystemPrompt(promptPerson, promptDifficulty);  // TODO: add var to generate text service
+            const systemPrompt = PromptGeneratingService.generateSystemPrompt(promptPerson, promptDifficulty);
             const codePrompt = PromptGeneratingService.generateCodePrompt();
             const transcriptPrompt = PromptGeneratingService.generateTranscriptPrompt();
-            const response = await TextGeneratingService.generateText(problemData, codePrompt, transcriptPrompt, transcribedAudio, studentCodeData);
+            const response = await TextGeneratingService.generateText(problemData, systemPrompt, codePrompt, transcriptPrompt, transcribedAudio, studentCodeData);
             res.status(200).json({ success: true, data: response });
 
         } catch (error) {

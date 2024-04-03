@@ -1,18 +1,20 @@
 const PromptGeneratingService = {
     generateSystemPrompt(promptPerson: string, promptDifficulty: number) {
-        
+        let promptPersonText: string = "";
+        let promptDifficultyText: string = "";
+
         switch (promptPerson) {
             case "HS_teacher":
-                console.log("high school teacher");
+                promptPersonText = "Be a high school computer science teacher"
                 break;
             case "professor":
-                console.log("professor");
+                promptPersonText = "Be a university level computer science professor"
                 break;
             case "senior_SWE":
-                console.log("senior software engineer");
+                promptPersonText = "Be a senior software engineer working at a big tech company"
                 break;
             case "interviewer":
-                console.log("interviewer");
+                promptPersonText = "Be a senior software engineer who is interviewing a new software engineer"
                 break;
             default:
                 console.log("default");
@@ -21,24 +23,25 @@ const PromptGeneratingService = {
 
         switch (promptDifficulty) {
             case 1:
-                console.log("choice 1");
+                promptDifficultyText = "provide a lot of hints";
                 break;
             case 2:
-                console.log("choice 2");
+                promptDifficultyText = "provide a few hints";
                 break;
             case 3:
-                console.log("choice 3");
+                promptDifficultyText = "provide very few hints";
                 break;
             case 4:
-                console.log("choice 4");
+                promptDifficultyText = "provide almost no hints";
                 break;
             case 5:
-                console.log("choice 5");
+                promptDifficultyText = "provide no hints at all";
                 break;
             default:
                 console.log("default");
                 break;
         }
+        return `${promptPersonText}, ${promptDifficultyText}`
     },
     
     generateCodePrompt() {
