@@ -1,19 +1,16 @@
 const PromptGeneratingService = {
-    generateSystemPrompt(promptPerson: string, promptDifficulty: number) {
+    generateSystemPrompt(promptPerson: string, promptDifficulty: string) {
         let promptPersonText: string = "";
         let promptDifficultyText: string = "";
 
         switch (promptPerson) {
-            case "HS_teacher":
-                promptPersonText = "Be a high school computer science teacher"
+            case "Professor":
+                promptPersonText = "Be a university-level computer science professor"
                 break;
-            case "professor":
-                promptPersonText = "Be a university level computer science professor"
+            case "Mentor":
+                promptPersonText = "Be a senior software engineer working at a big tech company who helps teach new software engineers"
                 break;
-            case "senior_SWE":
-                promptPersonText = "Be a senior software engineer working at a big tech company"
-                break;
-            case "interviewer":
+            case "Interviewer":
                 promptPersonText = "Be a senior software engineer who is interviewing a new software engineer"
                 break;
             default:
@@ -22,19 +19,19 @@ const PromptGeneratingService = {
         }
 
         switch (promptDifficulty) {
-            case 1:
+            case "1":
                 promptDifficultyText = "provide a lot of hints";
                 break;
-            case 2:
+            case "2":
                 promptDifficultyText = "provide a few hints";
                 break;
-            case 3:
+            case "3":
                 promptDifficultyText = "provide very few hints";
                 break;
-            case 4:
+            case "4":
                 promptDifficultyText = "provide almost no hints";
                 break;
-            case 5:
+            case "5":
                 promptDifficultyText = "provide no hints at all";
                 break;
             default:

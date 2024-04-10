@@ -12,6 +12,7 @@ if (API_KEY !== undefined) {
     openai.apiKey = API_KEY; 
   } else {
     openai.apiKey = 'default string';
+    console.error("error with API key or environment");
 }
 
 
@@ -21,7 +22,7 @@ const model_options = {
     "4": "gpt-4-turbo-preview"
 };
 const model_choice = model_options["3"];
-const temperature = 0.5;    // range 0 to 2, higher being more random
+const temperature = 0.1;    // range 0.0 to 2.0, higher being more random
 
 
 const TextGeneratingService = {
@@ -31,7 +32,7 @@ const TextGeneratingService = {
                 temperature: temperature,
                 messages: [
                     // {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph. Do not give solutions. If they are wrong, only reply with one paragraph of guidance.`},
-                    {"role": "system", "content": `${systemPrompt}. Summarize in one paragraph. Do not give solutions. If they are wrong, only reply with one paragraph of guidance.`},
+                    {"role": "system", "content": `${systemPrompt}. Summarize in one paragraph. Do not give solutions. If they are wrong, then only reply with one paragraph of guidance.`},
                     {"role": "user",   "content": `this is the technical interview question: ${problemData.problem}. /n /n Here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}`},
                     {"role": "user",   "content": `${codePrompt}:  ${studentCodeData}`},
                     {"role": "user",   "content": `${transcriptPrompt}:  ${transcriptData}`},
