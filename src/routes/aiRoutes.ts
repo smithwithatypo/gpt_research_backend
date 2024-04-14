@@ -3,12 +3,13 @@ import { TranscriptionController } from '../controllers/transcriptionController.
 import { TextGeneratingController } from '../controllers/textGeneratingController.js';
 import upload from '../middleware/multerConfig.js'; 
 import analyticsMiddleware from '../middleware/analyticsEngine.js';
+import cookieAssignment from '../middleware/cookieAssignment.js';
 
 
 const router = express.Router();
 
 //routes
-router.post('/generate-text', TextGeneratingController.getGeneratedTextPost, analyticsMiddleware);
+router.post('/generate-text', cookieAssignment, TextGeneratingController.getGeneratedTextPost, analyticsMiddleware);
 router.post('/transcribe-audio', upload.single('audio'), TranscriptionController.getResponse); 
 
 export default router;

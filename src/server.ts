@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import cookieAssignment from './middleware/cookieAssignment.js';
+// import cookieAssignment from './middleware/cookieAssignment.js';
 
 // routes
 import aiRoutes from './routes/aiRoutes.js';
@@ -12,11 +12,16 @@ import problemRoutes from './routes/problemRoutes.js';
 const app = express();
 const port = 3000;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://gptresearchfrontend.web.app/',
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cookieAssignment);
+// app.use(cookieAssignment);
 
 // routes
 app.use('/api/ai', aiRoutes);

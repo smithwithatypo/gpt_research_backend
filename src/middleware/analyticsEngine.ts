@@ -3,6 +3,7 @@ import supabase from "../utils/database.js"
 
 
 async function analyticsMiddleware(req: any, res: any) {
+    console.log('cookie data in analytics middleware: ', req.cookies);  // delete. debug only
 
     const eventData = new AnalyticsPayload(
         req.cookies.sessionID,
@@ -28,7 +29,10 @@ async function processAnalyticsData(eventData: AnalyticsPayload) {
     .insert([ eventData ])
     .select()
 
-    console.log("response from supabase in analytics: ", data, error)
+    if (error) {
+        console.log("error from supabase in analytics: ", error)
+    }
+    // console.log("response from supabase in analytics: ", data, error)
 
 
 
