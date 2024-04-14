@@ -13,7 +13,7 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-  origin: 'https://gptresearchfrontend.web.app/',
+  origin: 'https://gptresearchfrontend.web.app',
   credentials: true
 };
 
