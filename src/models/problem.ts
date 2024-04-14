@@ -12,7 +12,15 @@ export class Problem {
     example2?: string;     // optional
     example3?: string;     // optional
 
-    constructor(problemID: number, summary: string, categories: string[], problem: string, example1?: string, example2?: string, example3?: string) {
+    constructor(
+      problemID: number, 
+      summary: string, 
+      categories: string[], 
+      problem: string, 
+      example1?: string, 
+      example2?: string, 
+      example3?: string
+    ) {
       this.problemID = problemID;
       this.summary = summary;
       this.categories = categories;

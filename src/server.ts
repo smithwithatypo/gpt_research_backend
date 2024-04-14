@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import cookieAssignment from './middleware/cookieAssignment.js';
 
 // routes
 import aiRoutes from './routes/aiRoutes.js';
@@ -13,6 +15,8 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(cookieAssignment);
 
 // routes
 app.use('/api/ai', aiRoutes);

@@ -7,10 +7,9 @@ import { Problem } from '../models/problem.js';
 
 
 const TextGeneratingController = {
-    async getGeneratedTextPost(req: any, res: any) {
+    async getGeneratedTextPost(req: any, res: any, next: any) {
         try {
-            const { studentCodeData, problemChoice, transcribedAudio, promptPerson, promptDifficulty } = req.body;
-            console.log('req.body:', req.body)
+            const { datetime, studentCodeData, problemChoice, transcribedAudio, promptPerson, promptDifficulty } = req.body;
             const problemData: Problem | undefined = await ReadProblemService.getOneProblem(problemChoice);
             if (!problemData) { throw new Error('Failed to read problem data.') }
             const systemPrompt = PromptGeneratingService.generateSystemPrompt(promptPerson, promptDifficulty);
@@ -19,6 +18,9 @@ const TextGeneratingController = {
 
             const response = await TextGeneratingService.generateText(problemData, systemPrompt, codePrompt, transcriptPrompt, transcribedAudio, studentCodeData);
             res.status(200).json({ success: true, data: response });
+            
+            res.locals.generatedText = response;  // for analytics middleware
+            next(); // calls analytics middleware
 
         } catch (error) {
             console.error('Error in TextGeneratingController:', error);
