@@ -1,57 +1,48 @@
 import { AnalyticsPayload } from "../models/analyticsPayload.js"
 import supabase from "../utils/database.js"
 
+const SUPABASE_COLLECTION = 'Analytics_v1';
 
 async function analyticsMiddleware(req: any, res: any) {
-    console.log('cookie data in analytics middleware: ', req.cookies);  // delete. debug only
-
-    const eventData = new AnalyticsPayload(
-        req.cookies.sessionID,
-        req.body.datetime,
-        req.body.studentCodeData,
-        req.body.problemChoice,
-        req.body.transcribedAudio,
-        req.body.promptPerson,
-        req.body.promptDifficulty,
-        res.locals.generatedText
-    );
+    // console.log('cookie data in analytics middleware: ', req.cookies);  // delete. debug only
 
     try {
-        await processAnalyticsData(eventData);
+        const payloadData = {
+            sessionID: req.cookies.sessionID,
+            feedback: req.body.metaData.feedback,
+            datetime: req.body.metaData.datetime,
+            generatedText: res.locals.generatedText,
+            temperature: req.body.promptData.temperature,
+            voice: req.body.promptData.voice,
+            difficulty: req.body.promptData.difficulty,
+            model: req.body.promptData.model,
+            code: req.body.studentData.code,
+            transcript: req.body.studentData.transcript,
+            problemID: req.body.studentData.problemID
+        };
+        let eventData = new AnalyticsPayload(payloadData);
+
+        console.log("here", eventData);
+        try {
+            await processAnalyticsData(eventData);
+        } catch (err) {
+            console.error('Analytics tracking failed:', err);
+        }
     } catch (err) {
-        console.error('Analytics tracking failed:', err);
+        console.error('Error creating analytics payload:', err);
     }
 }
 
+
 async function processAnalyticsData(eventData: AnalyticsPayload) {
     const { data, error } = await supabase
-    .from('Analytics_test')
+    .from(SUPABASE_COLLECTION)
     .insert([ eventData ])
     .select()
 
     if (error) {
         console.log("error from supabase in analytics: ", error)
     }
-    // console.log("response from supabase in analytics: ", data, error)
-
-
-
-
-
-
-    // // Logic to queue or batch data to the database   // delete?--------------
-    // return new Promise((resolve, reject) => {
-        
-
-    //     resolve('success');
-    //     reject('error');
-
-    //     // Simulate async database operation
-    //     // Replace this with your actual database call
-    //     setTimeout(() => {  // delete this--------------------------
-    //         resolve(console.log("eventdata: ", data));  // or reject('error message') to simulate a failure
-    //     }, 100); // simulate delay
-    // });
 }
 
 export default analyticsMiddleware;

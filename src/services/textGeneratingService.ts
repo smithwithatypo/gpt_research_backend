@@ -15,14 +15,6 @@ if (API_KEY !== undefined) {
     console.error("error with API key or environment");
 }
 
-
-// // choose openAI GPT model
-// const model_options = {
-//     "3": "gpt-3.5-turbo",
-//     "4": "gpt-4-turbo-preview"
-// };
-// const model_choice = model_options["4"];
-// const temperature = 0.1;    // range 0.0 to 2.0, higher being more random
 const model_options = {
     "3": "gpt-3.5-turbo",
     "4": "gpt-4-turbo-preview"
