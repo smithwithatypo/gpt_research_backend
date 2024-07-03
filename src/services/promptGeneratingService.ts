@@ -52,7 +52,7 @@ const PromptGeneratingService = {
     },
 
     generateTranscriptPrompt() {
-        const prompt = "this is my explanation of my solution code to the problem above ";
+        const prompt = "this is my verbal explanation of my solution to the problem above";
         return prompt;
     }
 

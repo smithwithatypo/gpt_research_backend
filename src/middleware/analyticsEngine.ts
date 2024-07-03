@@ -4,7 +4,6 @@ import supabase from "../utils/database.js"
 const SUPABASE_COLLECTION = 'Analytics_v1';
 
 async function analyticsMiddleware(req: any, res: any) {
-    // console.log('cookie data in analytics middleware: ', req.cookies);  // delete. debug only
 
     try {
         const payloadData = {
@@ -22,7 +21,6 @@ async function analyticsMiddleware(req: any, res: any) {
         };
         let eventData = new AnalyticsPayload(payloadData);
 
-        console.log("here", eventData);
         try {
             await processAnalyticsData(eventData);
         } catch (err) {

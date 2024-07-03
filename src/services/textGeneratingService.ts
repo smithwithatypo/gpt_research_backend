@@ -15,20 +15,21 @@ if (API_KEY !== undefined) {
     console.error("error with API key or environment");
 }
 
-const model_options = {
-    "3": "gpt-3.5-turbo",
-    "4": "gpt-4-turbo-preview"
-};
+// const model_options = {       // deprecated
+//     "3": "gpt-3.5-turbo",
+//     "4": "gpt-4o"
+// };
+
+const model_choice = "gpt-4o";
 
 const TextGeneratingService = {
     async generateText(clientData: ClientData, problemData: Problem, systemPrompt: string, codePrompt: string, transcriptPrompt: string) {
         try {
-            const model_choice = model_options[clientData.promptData.model as keyof typeof model_options];
+            // const model_choice = model_options[clientData.promptData.model as keyof typeof model_options];   // deprecated
             const temperature = clientData.promptData.temperature;
             const completion = await openai.chat.completions.create({
                 temperature: temperature,
                 messages: [
-                    // {"role": "system", "content": `Be a senior software engineer who evaluates new software engineers for explaining their programmatic solutions to the following technical interview question. Summarize in one paragraph. Do not give solutions. If they are wrong, only reply with one paragraph of guidance.`},
                     {"role": "system", "content": `${systemPrompt}. Summarize in one paragraph. Do not give solutions. If they are wrong, then only reply with one paragraph of guidance.`},
                     {"role": "user",   "content": `this is the technical interview question: ${problemData.problem}. /n /n Here are the categories: ${problemData.categories}, here are some examples of the input and output: ${problemData.example1}, ${problemData.example2}, ${problemData.example3}`},
                     {"role": "user",   "content": `${codePrompt}:  ${clientData.studentData.code}`},

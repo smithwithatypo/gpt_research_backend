@@ -11,7 +11,6 @@ const TextGeneratingController = {
     async getGeneratedTextPost(req: any, res: any, next: any) {
         try {
             const clientData: ClientData = req.body;
-
             const problemData: Problem | undefined = await ReadProblemService.getOneProblem(clientData.studentData.problemID);
             if (!problemData) { throw new Error('Failed to read problem data.') }
             const systemPrompt = PromptGeneratingService.generateSystemPrompt(clientData);

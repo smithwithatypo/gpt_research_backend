@@ -2,7 +2,6 @@ import { Problem } from '../models/problem';
 
 const problems: Map<number, Problem> = new Map();
 
-// O(1) lookup --> problems.get(number)
 problems.set(0,{
     problemID: 0,
     summary: "Find duplicates in array",
