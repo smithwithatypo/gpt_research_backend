@@ -7,12 +7,13 @@ import cookieParser from 'cookie-parser';
 import aiRoutes from './routes/aiRoutes.js';
 import audioRoutes from './routes/audioRoutes.js';
 import problemRoutes from './routes/problemRoutes.js';
+import promptRoutes from './routes/promptRoutes.js'
 const app = express();
 const port = 3000;
 
 const corsOptions = {
-  origin: 'https://gptresearchfrontend.web.app',  // prod only
-  // origin: 'http://localhost:4200',  // dev only
+  // origin: 'https://gptresearchfrontend.web.app',  // prod only
+  origin: 'http://localhost:4200',  // dev only
   credentials: true
 };
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/api/ai', aiRoutes);
 app.use('/api/audio', audioRoutes);
 app.use('/api/problems', problemRoutes);
+app.use('/api/promptOptions', promptRoutes)
 
 // listen to port
 app.listen(port, () => {

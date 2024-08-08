@@ -1,4 +1,3 @@
-// Import the createClient method from the supabase-js library
 import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -9,7 +8,6 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-// console log when we connect to supabase
 console.log('Connected to Supabase');
 
 export default supabase;

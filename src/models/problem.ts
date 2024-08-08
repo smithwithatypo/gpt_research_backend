@@ -1,7 +1,3 @@
-// NOTE:  examples are optional but highly recommended to increase accuracy of AI responses
-//        format examples like this:   
-//            "Input: nums = [1,2,3,1] Output: true"
-
 
 export class Problem {
     problemID: number;     // required
