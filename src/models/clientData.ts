@@ -5,9 +5,14 @@ export class ClientData {
     }
     promptData: {
         temperature: number;
-        voice: string;
-        difficulty: number;
-        model: string;
+        voice: any;
+        instruction: any;
+        guardrail: any;
+        summarize: any;
+        COT: any;
+        extractor: any;
+        // difficulty: number;    // deprecated
+        // model: string;    // deprecated
     };
     studentData: {
         code: string;
@@ -15,7 +20,6 @@ export class ClientData {
         problemID: number;
     };
 
-    
     constructor(
         metaData: {
             feedback: string;
@@ -23,9 +27,14 @@ export class ClientData {
         },
         promptData: {
             temperature: number;
-            voice: string;
-            difficulty: number;
-            model: string;
+            voice: any;
+            instruction: any;
+            guardrail: any;
+            summarize: any;
+            COT: any;
+            extractor: any;
+            // difficulty: number;    // deprecated
+            // model: string;    // deprecated
         },
         studentData: {
             code: string;

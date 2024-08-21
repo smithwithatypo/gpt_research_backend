@@ -1,12 +1,12 @@
 
 export class Problem {
-    problemID: number;     // required
-    summary: string;       // required
-    categories: string[];  // required
-    problem: string;       // required
-    example1?: string;     // optional
-    example2?: string;     // optional
-    example3?: string;     // optional
+    problemID: number;     
+    summary: string;       
+    categories: string[];  
+    problem: string;       
+    example1?: string;     
+    example2?: string;     
+    example3?: string;     
 
     constructor(
       problemID: number, 

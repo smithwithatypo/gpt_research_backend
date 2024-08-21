@@ -19,13 +19,4 @@ const promptOptionsData = new PromptOptions(
     _extractor
 )
 
-async function testing() {
-    const hello = await PromptOptionsService.test();
-    return hello
-}
-
-const test = await testing();
-// console.log("test here", test)
-// console.log("options data here: ", promptOptionsData)
-
-export { promptOptionsData, test };
+export { promptOptionsData };
