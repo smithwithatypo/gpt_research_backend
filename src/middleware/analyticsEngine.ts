@@ -1,7 +1,7 @@
 import { AnalyticsPayload } from "../models/analyticsPayload.js"
 import supabase from "../utils/database.js"
 
-const SUPABASE_COLLECTION = 'Analytics_v1';
+const SUPABASE_COLLECTION = 'Analytics_v2';
 
 async function analyticsMiddleware(req: any, res: any) {
 
@@ -12,9 +12,12 @@ async function analyticsMiddleware(req: any, res: any) {
             datetime: req.body.metaData.datetime,
             generatedText: res.locals.generatedText,
             temperature: req.body.promptData.temperature,
-            voice: req.body.promptData.voice,
-            difficulty: req.body.promptData.difficulty,
-            model: req.body.promptData.model,
+            voice: req.body.promptData.voice.text,
+            instruction: req.body.promptData.instruction.text,
+            guardrail: req.body.promptData.guardrail.text,
+            summarize: req.body.promptData.summarize.text,
+            COT: req.body.promptData.COT.text,
+            extractor: req.body.promptData.extractor.text,
             code: req.body.studentData.code,
             transcript: req.body.studentData.transcript,
             problemID: req.body.studentData.problemID

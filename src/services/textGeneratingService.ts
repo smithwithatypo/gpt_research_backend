@@ -21,7 +21,6 @@ const TextGeneratingService = {
     async generateText(clientData: ClientData, problemData: Problem, codePrompt: string, transcriptPrompt: string) {
         try {
             const temperature = clientData.promptData.temperature;
-            console.log("ClientData in generateTextService: ", clientData);   // for debug
             const completion = await openai.chat.completions.create({
                 temperature: temperature,
                 messages: [
