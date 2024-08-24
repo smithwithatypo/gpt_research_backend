@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req: any, file: any, cb: any) => {
-    if (file.mimetype === 'audio/webm' || file.mimetype === 'video/webm') {
+    if (file.mimetype === 'audio/webm') {
         cb(null, true);
     } else {
         cb(new Error('Unsupported file format'), false);
