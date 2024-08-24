@@ -20,7 +20,8 @@ async function analyticsMiddleware(req: any, res: any) {
             extractor: req.body.promptData.extractor.text,
             code: req.body.studentData.code,
             transcript: req.body.studentData.transcript,
-            problemID: req.body.studentData.problemID
+            problemID: req.body.studentData.problemID,
+            netID: req.body.studentData.netID
         };
         let eventData = new AnalyticsPayload(payloadData);
 

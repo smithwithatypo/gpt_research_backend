@@ -13,6 +13,7 @@ interface IAnalyticsPayload {
     code: string;
     transcript: string;
     problemID: number;
+    netID: string;
 }
 
 export class AnalyticsPayload {
@@ -30,6 +31,7 @@ export class AnalyticsPayload {
     code: string;
     transcript: string;
     problemID: number;
+    netID: string;
 
     constructor(data: IAnalyticsPayload) {
         this.sessionID = data.sessionID;
@@ -46,5 +48,6 @@ export class AnalyticsPayload {
         this.code = data.code;
         this.transcript = data.transcript;
         this.problemID = data.problemID;
+        this.netID = data.netID;
     }
 }
