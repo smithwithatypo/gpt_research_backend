@@ -12,8 +12,8 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-  // origin: 'https://gptresearchfrontend.web.app',  // prod only
-  origin: 'http://localhost:4200',  // dev only
+  origin: 'https://gptresearchfrontend.web.app',  // prod only
+  // origin: 'http://localhost:4200',  // dev only
   credentials: true
 };
 
