@@ -27,6 +27,7 @@ async function analyticsMiddleware(req: any, res: any) {
 
         try {
             await processAnalyticsData(eventData);
+            console.log("Analytics tracking complete");
         } catch (err) {
             console.error('Analytics tracking failed:', err);
         }

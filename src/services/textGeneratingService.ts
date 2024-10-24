@@ -5,8 +5,8 @@ import { ClientData } from '../models/clientData';
 // openAI API config
 import OpenAI from 'openai';
 const openai = new OpenAI();
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 const API_KEY: string | undefined = process.env.OPENAI_API_KEY;
 if (API_KEY !== undefined) {
     openai.apiKey = API_KEY; 

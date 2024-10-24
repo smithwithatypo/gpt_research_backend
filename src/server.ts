@@ -12,9 +12,8 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-  origin: 'https://gptresearchfrontend.web.app',  // prod only
-  // origin: 'http://localhost:4200',  // dev only
-  credentials: true
+  origin: process.env.ORIGIN_URL,
+  credentials: true,
 };
 
 // middleware
@@ -30,6 +29,5 @@ app.use('/api/problems', problemRoutes);
 app.use('/api/promptOptions', promptRoutes);
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-  })
-  
+  console.log(`App listening on port ${port}`);
+});
