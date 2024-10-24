@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "tsc && env-cmd -f .env.dev node dist/server.js",
-    "start:prod": "tsc && env-cmd -f .env.prod node dist/server.js",
-    "start:deprecated": "tsc && node dist/server.js"
+    "start:prod": "tsc && node dist/server.js",
+    "start:staging": "tsc && env-cmd -f .env.staging node dist/server.js"
   },
   "repository": {
     "type": "git",

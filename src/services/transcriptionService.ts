@@ -1,7 +1,5 @@
 import fs from 'fs';
 import OpenAI from "openai";
-import dotenv from 'dotenv';
-dotenv.config();
 
 const openai = new OpenAI();
 const API_KEY: string | undefined = process.env.OPENAI_API_KEY;

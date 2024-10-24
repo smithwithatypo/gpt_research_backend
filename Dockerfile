@@ -20,4 +20,4 @@ RUN mkdir -p ./temp/audio
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:prod"]
