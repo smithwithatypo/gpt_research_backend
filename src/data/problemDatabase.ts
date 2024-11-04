@@ -8,10 +8,10 @@ problems.set(0,{
     problemID: 0,
     summary: "",
     categories: [],
-    problem:  "",
-    example1: "",
-    example2: "",
-    example3: "",
+    problem:  ``,
+    example1: '',
+    example2: '',
+    example3: '',
 });
 
 */
@@ -109,7 +109,48 @@ problems.set(8, {
   Return the weight of the last remaining stone or return 0 if none remain.`,
   categories: ["Heap"],
   example1: "Input: stones = [2,3,6,2,4]  Output: 1",
-  example2: "Input: stones = [1,2]Output: 1",
+  example2: "Input: stones = [1,2] Output: 1",
+});
+problems.set(9, {
+  problemID: 9,
+  summary: "Task Scheduler",
+  categories: ["Heap"],
+  problem:  `
+  You are given an array of CPU tasks tasks, where tasks[i] is an uppercase english character from A to Z. You are also given an integer n.
+
+  Each CPU cycle allows the completion of a single task, and tasks may be completed in any order.
+
+  The only constraint is that identical tasks must be separated by at least n CPU cycles, to cooldown the CPU.
+
+  Return the minimum number of CPU cycles required to complete all tasks.`,
+  example1: 'Input: tasks = ["X","X","Y","Y"], n = 2   Output: 5',
+  example2: 'Input: tasks = ["A","A","A","B","C"], n = 3   Output: 9',
+});
+problems.set(10,{
+  problemID: 10,
+  summary: "Maximize Distance to Closest Person",
+  categories: ["Array"],
+  problem:  `
+  You are given an array representing a row of seats where seats[i] = 1 represents a person sitting in the ith seat, and seats[i] = 0 represents that the ith seat is empty (0-indexed).
+
+  There is at least one empty seat, and at least one person sitting.
+
+  Alex wants to sit in the seat such that the distance between him and the closest person to him is maximized. 
+
+  Return that maximum distance to the closest person.`,
+  example1: 'Input: seats = [1,0,0,0,1,0,1]  Output: 2',
+  example2: 'Input: seats = [1,0,0,0]   Output: 3',
+});
+problems.set(11,{
+  problemID: 11,
+  summary: "Reorganize String",
+  categories: ["Heap"],
+  problem:  `
+  Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
+
+  Return any possible rearrangement of s or return "" if not possible.`,
+  example1: 'Input: s = "aab"   Output: "aba"',
+  example2: 'Input: s = "aaab"   Output: ""',
 });
 
 export default problems;
