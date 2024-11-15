@@ -23,7 +23,7 @@ const AudioTranscriptionService = {
     } catch (error) {
       console.error('Error transcribing audio:', error);
       console.error('Known issue: do NOT record audio in Safari. Use Chrome, Firefox, or Edge.')
-      throw error;
+      // throw error;
     }
   }
 };
